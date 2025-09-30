@@ -104,17 +104,31 @@
     return col;
   }
 
-  fetch('https://api.github.com/users/' + username + '/repos?sort=updated&per_page=9')
-    .then(function (r) { return r.json(); })
-    .then(function (repos) {
+  // First fetch the Task-Manager repo details
+  Promise.all([
+    fetch('https://api.github.com/repos/Ahmed-Elhosiny/Task-Manager').then(r => r.json()),
+    fetch('https://api.github.com/users/' + username + '/repos?sort=updated&per_page=9').then(r => r.json())
+  ])
+    .then(function ([taskManagerRepo, repos]) {
       if (loading) loading.remove();
       if (!Array.isArray(repos)) return;
-      repos
-        .filter(function (r) { return !r.fork; })
-        .slice(0, 9)
-        .forEach(function (repo) {
-          grid.appendChild(createCard(repo));
+      
+      // Process repositories: exclude the profile config repo and include Task-Manager
+      let filteredRepos = repos
+        .filter(function (r) { 
+          return !r.fork && r.name !== 'Ahmed-Elhosiny';
         });
+      
+      // Add Task-Manager if it's not already in the list
+      if (taskManagerRepo && taskManagerRepo.name === 'Task-Manager' && 
+          !filteredRepos.some(r => r.name === 'Task-Manager')) {
+        filteredRepos.unshift(taskManagerRepo);
+      }
+      
+      // Display up to 9 repositories
+      filteredRepos.slice(0, 9).forEach(function (repo) {
+        grid.appendChild(createCard(repo));
+      });
     })
     .catch(function () {
       if (loading) loading.textContent = 'Unable to load projects right now.';
