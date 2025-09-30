@@ -163,7 +163,7 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 ## 📞 Contact
 
 **Ahmed Elhosiny**
-- Email: [ahmed.elhosiny.dev@gmail.com](mailto:ahmed.elhosiny.dev@gmail.com)
+- Email: [ahmedelhosiny842@gmail.com](mailto:ahmedelhosiny842@gmail.com)
 - LinkedIn: [ahmed-elhosiny-657b301b6](https://www.linkedin.com/in/ahmed-elhosiny-657b301b6/)
 - GitHub: [Ahmed-Elhosiny](https://github.com/Ahmed-Elhosiny)
 - Twitter: [@ElHoS_1](https://x.com/ElHoS_1)
