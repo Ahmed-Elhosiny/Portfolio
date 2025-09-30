@@ -164,6 +164,71 @@
   });
 })();
 
+// Navbar scroll effect
+(function () {
+  var nav = document.querySelector('.modern-nav');
+  if (!nav) return;
+  
+  function handleScroll() {
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }
+  
+  window.addEventListener('scroll', handleScroll);
+  handleScroll(); // Check initial state
+})();
+
+// Smooth scroll for anchor links
+(function () {
+  var links = document.querySelectorAll('a[href^="#"]');
+  
+  links.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href === '#' || href === '#!') return;
+      
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+})();
+
+// Animate elements on scroll
+(function () {
+  var cards = document.querySelectorAll('.modern-card, .project-card, .timeline-item');
+  if (!cards.length) return;
+  
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '0';
+        entry.target.style.transform = 'translateY(20px)';
+        
+        setTimeout(function() {
+          entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, 100);
+        
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  
+  cards.forEach(function(card) {
+    observer.observe(card);
+  });
+})();
+
 // IntersectionObserver reveal effect
 (function () {
   var items = document.querySelectorAll('.reveal');
