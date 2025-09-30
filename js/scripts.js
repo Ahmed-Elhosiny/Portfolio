@@ -135,6 +135,35 @@
     });
 })();
 
+// Smooth page transitions
+(function () {
+  // Check if user prefers reduced motion
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  // Handle internal navigation links
+  var internalLinks = document.querySelectorAll('a[href^="index.html"], a[href^="resume.html"], a[href^="projects.html"], a[href^="contact.html"]');
+  
+  internalLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      
+      // Only handle internal navigation
+      if (href && !href.startsWith('http') && !href.startsWith('#')) {
+        e.preventDefault();
+        
+        // Add exit animation
+        document.body.classList.add('page-exit');
+        
+        // Navigate after animation completes
+        setTimeout(function() {
+          window.location.href = href;
+        }, 300);
+      }
+    });
+  });
+})();
+
 // IntersectionObserver reveal effect
 (function () {
   var items = document.querySelectorAll('.reveal');
