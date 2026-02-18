@@ -114,6 +114,7 @@
     "Ahmed-Elhosiny/PixelCraft",
     "Ahmed-Elhosiny/University-Portal",
     "Ahmed-Elhosiny/Business-Customer-Service-Assistant",
+    "Ahmed-Elhosiny/KickZoneAPI",
   ];
 
   var requests = targets.map(function (fullName) {
