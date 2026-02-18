@@ -109,12 +109,13 @@
 
   // Only fetch the specified repositories
   var targets = [
-    "Ahmed-Elhosiny/Portfolio",
     "Ahmed-Elhosiny/Doctorz",
-    "Ahmed-Elhosiny/PixelCraft",
-    "Ahmed-Elhosiny/University-Portal",
-    "Ahmed-Elhosiny/Business-Customer-Service-Assistant",
     "Ahmed-Elhosiny/KickZoneAPI",
+    "Ahmed-Elhosiny/Factory-Monitoring",
+    "Ahmed-Elhosiny/Business-Customer-Service-Assistant",
+    "Ahmed-Elhosiny/University-Portal",
+    "Ahmed-Elhosiny/PixelCraft",
+    "Ahmed-Elhosiny/Portfolio",
   ];
 
   var requests = targets.map(function (fullName) {
